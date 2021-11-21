@@ -6,7 +6,9 @@ import os
 import json
 
 
-wandb.init(project="sm-pytorch-cifar")
+os.environ["WANDB_BASE_URL"] = "https://wandb.cactuslabs.ai"
+#run = wandb.init(project="TEST_SM_SWEEP", entity="applied-machine-learning")
+run = wandb.init(project="TEST_SM_SWEEP")
 
 config = wandb.config
 # Set defaults if we dont have values from SageMaker
@@ -158,3 +160,4 @@ for epoch in range(config.epochs):
     wandb.log({"Examples": example_images,
                "Test Acc": test_acc,
                "Loss": running_loss})
+run.finish()

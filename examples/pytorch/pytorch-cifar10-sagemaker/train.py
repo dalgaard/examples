@@ -27,8 +27,12 @@ bucket = sagemaker_session.default_bucket()
 prefix = 'sagemaker/pytorch-cifar10'
 
 # If you are running this outside of a sagemaker notebook, you must set SAGEMAKER_ROLE
-role = os.getenv('SAGEMAKER_ROLE') or sagemaker.get_execution_role()
+#role = os.getenv('SAGEMAKER_ROLE') or sagemaker.get_execution_role()
+#role = "AmazonSageMaker-ExecutionRole-20191224T175599"
+role = "arn:aws:iam::679792626450:role/service-role/AmazonSageMaker-ExecutionRole-20191224T175599"
 wandb.sagemaker_auth(path="source")
+
+
 
 # Ensure training data is stored in s3
 inputs = "s3://{}/{}".format(bucket, prefix)
